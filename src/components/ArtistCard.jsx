@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
+import '../styles/components/ArtistCard.css';
 
 function ArtistCard({ artist }) {
   return (
-    <div style={{ border: '1px solid #ddd', padding: '1rem', borderRadius: '8px', textAlign: 'center' }}>
+    <div className="artist-card">
       {artist.images[0] && (
         <Link to={`/artist/${artist.id}`}>
-          <img src={artist.images[0].url} alt={artist.name} style={{ width: '100%', height: 150, objectFit: 'cover' }} />
+          <img src={artist.images[0].url} alt={artist.name}/>
         </Link>
       )}
       <h3>
-        <Link to={`/artist/${artist.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to={`/artist/${artist.id}`}>
           {artist.name}
         </Link>
       </h3>

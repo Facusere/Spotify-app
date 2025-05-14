@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { getAlbum } from '../api/spotify';
+import '../styles/pages/AlbumDetail.css';
 
 function AlbumDetail() {
   const { id } = useParams();
@@ -46,41 +47,37 @@ function AlbumDetail() {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div className="album-detail">
       <Header />
-      <button onClick={() => navigate(-1)} style={{ marginBottom: '1rem' }}>
+      <button
+        onClick={() => navigate(-1)}
+        className="album-detail__back-btn"
+      >
         Volver
       </button>
 
       {album && (
-        <div style={{ textAlign: 'center' }}>
+        <div className="album-detail__content">
           {album.images[0] && (
             <img
               src={album.images[0].url}
               alt={album.name}
-              style={{
-                width: '300px',
-                height: '300px',
-                objectFit: 'cover',
-                borderRadius: '8px',
-                marginBottom: '1rem',
-              }}
+              className="album-detail__img"
             />
           )}
           <h2>{album.name}</h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+          <ul className="album-detail__tracks">
             {album.tracks.items.map((track, index) => (
-              <li key={track.id} style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center' }}>
+              <li key={track.id} className="album-detail__track">
                 {index + 1}. {track.name}
                 <span
                   onClick={() => toggleFavorite(track)}
-                  style={{
-                    marginLeft: '1rem',
-                    cursor: 'pointer',
-                    color: favoriteSongs.some((song) => song.id === track.id)
-                      ? 'gold'
-                      : 'gray',
-                  }}
+                  className={
+                    favoriteSongs.some((song) => song.id === track.id)
+                      ? 'album-detail__star album-detail__star--active'
+                      : 'album-detail__star'
+                  }
+                  title="Agregar/Quitar de favoritos"
                 >
                   ★
                 </span>

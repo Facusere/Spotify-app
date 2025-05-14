@@ -1,6 +1,8 @@
+import '../styles/components/Header.css';
+
 function Header() {
   return (
-    <header style={{ padding: '1rem', textAlign: 'center', background: '#1DB954', color: 'white' }}>
+    <header className="header">
       <h1>Spotify Artistas</h1>
     </header>
   );

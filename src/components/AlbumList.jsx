@@ -1,8 +1,9 @@
 import AlbumCard from './AlbumCard';
+import '../styles/components/AlbumList.css';
 
 function AlbumList({ albums }) {
   return (
-    <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
+    <div className="album-list">
       {albums.map((album) => (
         <AlbumCard key={album.id} album={album} />
       ))}
