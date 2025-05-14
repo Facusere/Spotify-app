@@ -1,8 +1,9 @@
 import ArtistCard from './ArtistCard';
+import '../styles/components/ArtistList.css';
 
 function ArtistList({ artists }) {
   return (
-    <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
+    <div className="artist-list">
       {artists.map((artist) => (
         <ArtistCard key={artist.id} artist={artist} />
       ))}

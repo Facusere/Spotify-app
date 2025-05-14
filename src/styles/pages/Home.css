@@ -1,0 +1,110 @@
+.home-page {
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.home-page__main-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-page__left {
+  flex: 2 1 0;
+  min-width: 300px;
+}
+
+.home-page__search-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.home-page__search-button {
+  background: #1db954;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.home-page__search-button:hover {
+  background: #14833b;
+}
+
+.home-page__artist-list {
+  margin-bottom: 2rem;
+}
+
+.home-page__favorites {
+  flex: 1 1 0;
+  min-width: 250px;
+  max-width: 350px;
+  background: #222;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.home-page__favorites-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #1db954;
+}
+
+.home-page__favorites-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.home-page__favorites-section-title {
+  color: #1db954;
+  margin-bottom: 0.5rem;
+}
+
+.home-page__favorites-list {
+  list-style: none;
+  padding: 0;
+}
+
+.home-page__favorites-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.home-page__favorites-link {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  gap: 0.7rem;
+}
+
+.home-page__favorites-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.home-page__favorites-song {
+  font-size: 0.95rem;
+  color: #b3b3b3;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .home-page__main-content {
+    flex-direction: column;
+  }
+  .home-page__favorites {
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+}

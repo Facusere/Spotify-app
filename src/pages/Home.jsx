@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import ArtistList from '../components/ArtistList';
 import { searchArtists } from '../api/spotify'; 
+import '../styles/pages/Home.css';
 
 function Home() {
   const [query, setQuery] = useState('');
@@ -37,71 +38,66 @@ function Home() {
     }
   };
 
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', fontFamily: 'Arial, sans-serif' }}>
+    <div className="home-page">
       <Header />
-      <div style={{ width: '100%', maxWidth: '800px', marginBottom: '2rem' }}>
-        <SearchBar 
-          value={query} 
-          onChange={(value) => setQuery(value)} 
-          onKeyDown={handleKeyDown} 
-        />
-        <button 
-          onClick={handleSearch} 
-          style={{
-            marginTop: '1rem',
-            padding: '0.5rem 1rem',
-            backgroundColor: '#007BFF',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          Buscar
-        </button>
-      </div>
-
-      <div style={{ width: '100%', maxWidth: '800px', marginBottom: '2rem' }}>
-        <ArtistList artists={artists} />
-      </div>
-
-      {!artists.length && showFavorites && (
-        <div style={{ width: '100%', maxWidth: '800px' }}>
-          <h2 style={{ textAlign: 'center', marginBottom: '1rem', color: '#fff' }}>Favoritos</h2>
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
-            <div style={{ flex: 1 }}>
-              <h3 style={{ textAlign: 'center', color: '#fff' }}>Artistas</h3>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
-                {favorites.map((fav) => (
-                  <li key={fav.id} style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-                    <Link to={`/artist/${fav.id}`} style={{ textDecoration: 'none', color: '#fff', display: 'flex', alignItems: 'center' }}>
-                      {fav.image && (
-                        <img src={fav.image} alt={fav.name} style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%', marginRight: '1rem' }} />
-                      )}
-                      <span style={{ fontSize: '1rem', color: '#fff' }}>{fav.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div style={{ flex: 1 }}>
-              <h3 style={{ textAlign: 'center', color: '#fff' }}>Canciones</h3>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
-                {favoriteSongs.map((song) => (
-                  <li key={song.id} style={{ marginBottom: '1rem' }}>
-                    <Link to={`/album/${song.albumId}`} style={{ textDecoration: 'none', color: '#fff' }}>
-                      <p style={{ fontSize: '0.9rem', color: '#fff' }}>
-                        <strong>{song.name}</strong> - {song.artist} ({song.album})
-                      </p>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <div className="home-page__main-content">
+        <div className="home-page__left">
+          <div className="home-page__search-container">
+            <SearchBar
+              value={query}
+              onChange={(value) => setQuery(value)}
+              onKeyDown={handleKeyDown}
+            />
+            <button
+              onClick={handleSearch}
+              className="home-page__search-button"
+            >
+              Buscar
+            </button>
+          </div>
+          <div className="home-page__artist-list">
+            <ArtistList artists={artists} />
           </div>
         </div>
-      )}
+        {!artists.length && showFavorites && (
+          <div className="home-page__favorites">
+            <h2 className="home-page__favorites-title">Favoritos</h2>
+            <div className="home-page__favorites-content">
+              <div className="home-page__favorites-section">
+                <h3 className="home-page__favorites-section-title">Artistas</h3>
+                <ul className="home-page__favorites-list">
+                  {favorites.map((fav) => (
+                    <li key={fav.id} className="home-page__favorites-item">
+                      <Link to={`/artist/${fav.id}`} className="home-page__favorites-link">
+                        {fav.image && (
+                          <img src={fav.image} alt={fav.name} className="home-page__favorites-img" />
+                        )}
+                        <span>{fav.name}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="home-page__favorites-section">
+                <h3 className="home-page__favorites-section-title">Canciones</h3>
+                <ul className="home-page__favorites-list">
+                  {favoriteSongs.map((song) => (
+                    <li key={song.id} className="home-page__favorites-item">
+                      <Link to={`/album/${song.albumId}`} className="home-page__favorites-link">
+                        <p className="home-page__favorites-song">
+                          <strong>{song.name}</strong> - {song.artist} ({song.album})
+                        </p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
+import '../styles/components/AlbumCard.css';
 
 function AlbumCard({ album }) {
   return (
-    <div style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '8px', textAlign: 'center' }}>
+    <div className="album-card">
       {album.images[0] && (
         <Link to={`/album/${album.id}`}>
-          <img src={album.images[0].url} alt={album.name} style={{ width: '100%', height: 150, objectFit: 'cover' }} />
+          <img src={album.images[0].url} alt={album.name} />
         </Link>
       )}
       <h4>
-        <Link to={`/album/${album.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to={`/album/${album.id}`}>
           {album.name}
         </Link>
       </h4>

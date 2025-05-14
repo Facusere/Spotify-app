@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import AlbumList from '../components/AlbumList';
 import Header from '../components/Header';
 import { getArtist, getAlbums } from '../api/spotify'; 
+import '../styles/pages/ArtistDetail.css';
 
 function ArtistDetail() {
   const { id } = useParams();
@@ -51,26 +52,30 @@ function ArtistDetail() {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div className="artist-detail">
       <Header />
-      <button onClick={() => navigate(-1)} style={{ marginBottom: '1rem' }}>
+      <button
+        onClick={() => navigate(-1)}
+        className="artist-detail__back-btn"
+      >
         Volver
       </button>
 
       {artist && (
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <div className="artist-detail__name">
           {artist.images[0] && (
-            <img src={artist.images[0].url} alt={artist.name} style={{ height: 200, borderRadius: '8px' }} />
+            <img src={artist.images[0].url} alt={artist.name} className="artist-detail__img" />
           )}
-          <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <h2>
             {artist.name}
             <span
               onClick={toggleFavorite}
-              style={{
-                marginLeft: '1rem',
-                cursor: 'pointer',
-                color: isFavorite ? 'gold' : 'gray',
-              }}
+              className={
+                isFavorite
+                  ? 'artist-detail__star artist-detail__star--active'
+                  : 'artist-detail__star'
+              }
+              title="Agregar/Quitar de favoritos"
             >
               ★
             </span>
